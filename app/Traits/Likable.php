@@ -10,13 +10,16 @@ trait Likable
 {   
     public function scopeWithLikes(Builder $query)
     {
-        $query->leftJoinSub(
-            'select tweet_id, sum(liked) likes, sum(!liked) dislikes from likes group by tweet_id',
-            'likes',
-            'likes.tweet_id',
-            'tweets.id'
-        );
+        return self::withCount([
+            'likes as likes' => function ($query) {
+                $query->where('liked', true);
+            }, 
+            'likes as dislikes' => function($query){
+                $query->where('liked', false);
+            }
+        ]);
     }
+    
     
     public function likes() // check all likes for certain user $user->likes;
     {
