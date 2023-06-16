@@ -5,7 +5,8 @@
 @endsection
 
 @section('content')
-    <livewire:tweets />
+    <livewire:timeline.store-tweet />
+    <livewire:timeline.tweets />
 @endsection
 
 @section('livewire-scripts')

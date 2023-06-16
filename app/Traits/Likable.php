@@ -20,7 +20,6 @@ trait Likable
         ]);
     }
     
-    
     public function likes() // check all likes for certain user $user->likes;
     {
         return $this->hasMany(Like::class);    

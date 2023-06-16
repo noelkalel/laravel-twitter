@@ -1,39 +1,17 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Timeline;
 
 use App\Models\Tweet;
 use Livewire\Component;
 
 class Tweets extends Component
 {
-    public $body;
-    public $characters = 255;
-
-    protected $rules = [
-        'body' => 'required|string|max:255|min:3'
+    protected $listeners = [
+        'storeTweet'
     ];
 
-    public function charactersRemaining()
-    {
-        $this->characters = 255 - strlen($this->body);
-    }
-
-    public function store()
-    {
-        $this->validate();  
-
-        auth()->user()->tweets()->create([
-            'body' => $this->body
-        ]);
-
-        $this->dispatchBrowserEvent('toastr:success', [
-            'message' => 'Tweet Published!'
-        ]);
-
-        $this->body = '';
-        $this->characters = 255;
-    }
+    public function storeTweet(){}
 
     public function like($id)
     {
@@ -88,6 +66,6 @@ class Tweets extends Component
     {
         $tweets = auth()->user()->timeline();
 
-        return view('livewire.tweets', compact('tweets'));
+        return view('livewire.timeline.tweets', compact('tweets'));
     }
 }
