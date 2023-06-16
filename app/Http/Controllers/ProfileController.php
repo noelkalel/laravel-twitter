@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 class ProfileController extends Controller
@@ -41,8 +40,9 @@ class ProfileController extends Controller
 
         if(request('avatar')){
             $attributes['avatar'] = request('avatar')->getClientOriginalName();  // ime slike -> expample: test.jpg 
+            
+            $destination = storage_path('/app/public/images/');  // putanja -> example.com/public/images
 
-            $destination = base_path() . '/public/images';  // putanja -> example.com/public/images
             request('avatar')->move($destination, $attributes['avatar']); // file object + putanja + slika
         }
 

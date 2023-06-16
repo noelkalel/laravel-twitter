@@ -32,7 +32,7 @@ class User extends Authenticatable
 
     public function getAvatarAttribute($value) // $user->avatar;
     {
-        return $value ? asset('/images/' . $value) : asset('/images/default-avatar.jpg');
+        return $value ? asset('storage/images/' . $value) : asset('storage/images/default-avatar.jpg');
     }
 
     public function tweets() // $user->tweets();

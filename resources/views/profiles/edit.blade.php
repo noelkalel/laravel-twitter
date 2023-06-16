@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="col-md-6 px-3">
+    <div class="col-md-12 px-3">
         <h4>
             Edit Profile
         </h4><hr>
